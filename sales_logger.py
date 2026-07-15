@@ -1,3 +1,4 @@
+# Session 2: Sales Logger Project Verified
 import os
 import sys
 import json
