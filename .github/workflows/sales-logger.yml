@@ -1,45 +1,33 @@
-name: Daily Sales Logger
+name: Sales Logger Auto Run
 
 on:
   schedule:
-    # 13:00 UTC = 20:00 ICT (Thailand)
-    - cron: '0 13 * * *'
-  workflow_dispatch:
-    inputs:
-      menu:
-        description: 'ชื่อเมนู'
-        required: true
-        default: 'นมหมีฮอกไกโด'
-      qty:
-        description: 'จำนวน'
-        required: true
-        default: '1'
-      price:
-        description: 'ราคา'
-        required: true
-        default: '65'
+    - cron: '0 13 * * *'  # ทำงานทุกวัน เวลา 20:00 น. (เวลาไทย)
+  workflow_dispatch:     # บรรทัดนี้ช่วยให้คุณสามารถกดคลิก Run ด้วยตนเองเพื่อทดสอบได้
 
 jobs:
-  log-sale:
+  log-sales:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          cache: pip
+          python-python: '3.10'
 
-      - run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          pip install gspread google-auth requests
 
-      - name: Run sales_logger
+      - name: Run Logger Script
         env:
           GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}
+          SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           LINE_CHANNEL_TOKEN: ${{ secrets.LINE_CHANNEL_TOKEN }}
         run: |
-          python sales_logger.py \
-            --menu "${{ github.event.inputs.menu || 'นมหมีฮอกไกโด' }}" \
-            --qty ${{ github.event.inputs.qty || 1 }} \
-            --price ${{ github.event.inputs.price || 65 }}
+          # ตัวอย่างการส่ง Argument ไปทดสอบรัน (หรือปรับแต่งตามที่ต้องการทดสอบ)
+          python sales_logger.py --menu "Daily Cron Report" --qty 1 --price 0
