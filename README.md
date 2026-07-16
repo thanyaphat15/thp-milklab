@@ -28,3 +28,8 @@ Template repo สำหรับวิชา 31-407-106-406 : AI for Solopreneur
 ## ดูคอร์ส
 
 [course-691-stsw](https://github.com/<owner>/course-691-stsw) (link จะ update ตอนสร้าง public repo)
+
+## คำสั่ง 
+python caption_generator.py --variant
+python caption_generator.py 
+python sales_logger.py --menu "นมเสาวรส" --qty 1 --price 60
