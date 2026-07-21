@@ -25,3 +25,7 @@ Telegram notification sent.
 2026-07-21 10:49:21 | tool_error | ValueError: quantity must be positive
 2026-07-21 10:49:39 | user_input | บันทึกขายนมหมี 2 ขวด
 2026-07-21 10:49:44 | tool_error | ไม่สามารถ parse คำสั่งเป็น tool call ได้
+2026-07-21 10:57:50 | user_input | บันทึกขายนมเสาวรส 5 ขวด ขวดละ 60
+2026-07-21 10:57:54 | llm_response | {"tool": "log_sale", "args": {"price": 60, "qty": 5, "menu": "\u0e19\u0e21\u0e40\u0e2a\u0e32\u0e27\u0e23\u0e2a"}}
+2026-07-21 10:57:57 | tool_result | log_sale OK: Successfully logged to Sheets: ['2026-07-21 10:57:55', 'นมเสาวรส', 5, 60.0, 300.0]
+Telegram notification sent.

@@ -215,8 +215,10 @@ def _query_sales(date: str) -> str:
 
 
 def _log_sale(menu: str, qty: int, price: float) -> str:
+    # compute next row before appending (sheet rows + 1)
     sheet = _load_sheets_worksheet()
     next_row = len(sheet.get_all_values()) + 1
+
     sales_logger_path = os.path.join(
         os.path.dirname(__file__), "sales_logger.py")
     result = subprocess.run(
@@ -239,6 +241,7 @@ def _log_sale(menu: str, qty: int, price: float) -> str:
             f"sales_logger failed: {result.stderr.strip() or result.stdout.strip()}"
         )
     output = result.stdout.strip()
+    # return appended row location in A1 style plus original logger output
     return f"row appended at A{next_row}. {output}"
 
 
