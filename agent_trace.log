@@ -1,0 +1,27 @@
+2026-07-21 10:41:04 | user_input | บันทึกขายนมหมี -5 ขวด
+2026-07-21 10:41:09 | llm_response | {"tool": "log_sale", "args": {"qty": -5, "menu": "\u0e19\u0e21\u0e2b\u0e21\u0e35\u0e48", "price": 0}}
+2026-07-21 10:41:09 | tool_error | ValueError: quantity must be positive
+2026-07-21 10:41:20 | user_input | ดูยอดขายวันนี้
+2026-07-21 10:41:24 | llm_response | {"tool": "query_sales", "args": {"date": "2024-05-23"}}
+2026-07-21 10:41:26 | tool_result | query_sales OK: No sales found for 2024-05-23
+2026-07-21 10:43:21 | user_input | ดูยอดขายวันนี้
+2026-07-21 10:43:25 | llm_response | {"tool": "query_sales", "args": {"date": "2026-07-21"}}
+2026-07-21 10:43:26 | tool_result | query_sales OK: ยอดขายวันที่ 2026-07-21: 3 รายการ, จำนวน 103, ยอดรวม 6190.00 บาท
+2026-07-21 10:44:15 | user_input | บันทึกขายนมหมี 100  ขวด
+2026-07-21 10:44:19 | tool_error | ไม่สามารถ parse คำสั่งเป็น tool call ได้
+2026-07-21 10:44:32 | user_input | บันทึกขายนมหมี 2 ขวด ขวดละ 65
+2026-07-21 10:44:36 | llm_response | {"tool": "log_sale", "args": {"menu": "\u0e19\u0e21\u0e2b\u0e21\u0e35", "qty": 2, "price": 65}}
+2026-07-21 10:44:38 | tool_result | log_sale OK: Successfully logged to Sheets: ['2026-07-21 10:44:36', 'นมหมี', 2, 65.0, 130.0]
+Telegram notification sent.
+2026-07-21 10:47:42 | user_input | บันทึกขายนมหมี 5 ขวด ขวดละ 65
+2026-07-21 10:47:47 | llm_response | {"tool": "log_sale", "args": {"qty": 5, "menu": "\u0e19\u0e21\u0e2b\u0e21\u0e35", "price": 65}}
+2026-07-21 10:47:50 | tool_result | log_sale OK: row appended at A16. Successfully logged to Sheets: ['2026-07-21 10:47:48', 'นมหมี', 5, 65.0, 325.0]
+Telegram notification sent.
+2026-07-21 10:48:48 | user_input | บันทึกขายนมหมี -5 ขวด
+2026-07-21 10:49:02 | llm_response | {"tool": "log_sale", "args": {"price": 0, "menu": "\u0e19\u0e21\u0e2b\u0e21\u0e35", "qty": -5}}
+2026-07-21 10:49:02 | tool_error | ValueError: quantity must be positive
+2026-07-21 10:49:16 | user_input | บันทึกขายนมหมี 0 ขวด
+2026-07-21 10:49:21 | llm_response | {"tool": "log_sale", "args": {"price": 0, "menu": "\u0e19\u0e21\u0e15\u0e23\u0e32\u0e2b\u0e21\u0e35", "qty": 0}}
+2026-07-21 10:49:21 | tool_error | ValueError: quantity must be positive
+2026-07-21 10:49:39 | user_input | บันทึกขายนมหมี 2 ขวด
+2026-07-21 10:49:44 | tool_error | ไม่สามารถ parse คำสั่งเป็น tool call ได้
