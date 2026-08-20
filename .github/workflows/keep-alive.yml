@@ -11,8 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping Streamlit App on Hugging Face
+        env:
+          HF_USERNAME: ${{ vars.HF_USERNAME || secrets.HF_USERNAME || 'thanyaphat' }}
+          HF_SPACE_NAME: ${{ vars.HF_SPACE_NAME || 'thp-milklab' }}
         run: |
-          SPACE_URL="https://${{ vars.HF_USERNAME || 'thanyaphat15' }}-${{ vars.HF_SPACE_NAME || 'thp-milklab' }}.hf.space"
+          SPACE_URL="https://${HF_USERNAME}-${HF_SPACE_NAME}.hf.space"
           echo "Pinging Space at: $SPACE_URL"
           STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" -L "$SPACE_URL" || echo "failed")
           echo "Response Status: $STATUS_CODE"
