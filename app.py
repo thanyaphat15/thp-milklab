@@ -19,7 +19,7 @@ from google import genai
 from sentence_transformers import SentenceTransformer
 
 TRACE_FILE = Path(__file__).parent / "traces.jsonl"
-KB_FILE = Path(__file__).parent / "menu_kb.md"
+KB_FILE = Path(__file__).parent / "sandwich_kb.md"
 EMBEDDING_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 GEMINI_MODEL = "gemini-2.5-flash"
 
@@ -142,7 +142,7 @@ def generate_answer(query: str, context_chunks: list[str], trace_id: str | None 
     client = genai.Client(api_key=api_key)
     context_text = "\n\n".join(context_chunks)
     prompt = (
-        "คุณคือผู้ช่วยตอบคำถามเกี่ยวกับร้าน MilkLab° จากข้อมูลด้านล่างเท่านั้น\n"
+        "คุณคือผู้ช่วยตอบคำถามเกี่ยวกับร้าน Sandwich Cloud Kitchen (ร้านแซนด์วิชขนมปังหนานุ่ม ไส้แน่น สไตล์คาเฟ่เกาหลี/ญี่ปุ่น Pre-order & Catering) จากข้อมูลด้านล่างเท่านั้น\n"
         "ถ้าคำตอบไม่มีใน context ให้ตอบว่า 'ขอโทษครับ/ค่ะ ฉันไม่มีข้อมูลในส่วนนี้'\n"
         "อย่าเดาตอบเกินกว่าที่มีใน context\n\n"
         f"Context:\n{context_text}\n\n"
@@ -169,9 +169,9 @@ def generate_answer(query: str, context_chunks: list[str], trace_id: str | None 
 
 
 def main() -> None:
-    st.set_page_config(page_title="MilkLab° RAG", page_icon="🥛")
-    st.title("MilkLab° RAG Chatbot")
-    st.caption("ถามอะไรเกี่ยวกับ MilkLab ได้ ตอบจาก menu_kb.md")
+    st.set_page_config(page_title="Sandwich Cloud Kitchen RAG", page_icon="🥪")
+    st.title("🥪 Sandwich Cloud Kitchen Chatbot")
+    st.caption("ถามเรื่องเมนู รอบจัดส่ง บริการจัดเลี้ยง และการแพ้อาหารได้เลย ตอบจาก sandwich_kb.md")
 
     model, index, chunks = load_index()
     if "messages" not in st.session_state:
