@@ -1,4 +1,4 @@
-"""MilkLab RAG Chatbot (S3).
+"""Sandwich Cloud Kitchen RAG Chatbot (S4 Pivot).
 
 Run locally: streamlit run app.py
 Deploy: push to GitHub then Actions deploys to HuggingFace Space
@@ -13,7 +13,7 @@ import streamlit as st
 
 @st.cache_resource
 def load_index():
-    """TODO 1+2+3: โหลด menu_kb.md, split เป็น chunk, encode ด้วย sentence-transformers,
+    """TODO 1+2+3: โหลด sandwich_kb.md, split เป็น chunk, encode ด้วย sentence-transformers,
     สร้าง faiss index. Cache เพราะโหลด model ครั้งแรกใช้เวลา 30 วินาที
 
     Returns: (model, index, chunks_list)
@@ -35,9 +35,9 @@ def generate_answer(query: str, context_chunks: list[str]) -> str:
 
 
 def main():
-    st.set_page_config(page_title="MilkLab° RAG", page_icon="🥛")
-    st.title("MilkLab° RAG Chatbot")
-    st.caption("ถามอะไรเกี่ยวกับ MilkLab ได้ ตอบจาก menu_kb.md")
+    st.set_page_config(page_title="Sandwich Cloud Kitchen RAG", page_icon="🥪")
+    st.title("🥪 Sandwich Cloud Kitchen Chatbot")
+    st.caption("ถามอะไรเกี่ยวกับร้านแซนด์วิชได้เลย ตอบจาก sandwich_kb.md")
 
     try:
         model, index, chunks = load_index()
@@ -52,7 +52,7 @@ def main():
         with st.chat_message(msg["role"]):
             st.write(msg["content"])
 
-    if prompt := st.chat_input("ถามอะไรเกี่ยวกับ MilkLab"):
+    if prompt := st.chat_input("ถามเรื่องเมนู รอบส่ง หรือบริการจัดเลี้ยงได้เลย"):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.write(prompt)
