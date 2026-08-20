@@ -1,4 +1,4 @@
-"""Sandwich Cloud Kitchen Agent Harness (S4 Pivot).
+"""ร้านแซนด์วิดวะ Agent Harness (S4 Pivot).
 
 Usage:
     python agent_harness.py --cmd "บันทึกขายทงคัตสึหมูชิ้นหนา 2 กล่อง ราคา 89 รอบ A"

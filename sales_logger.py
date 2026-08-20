@@ -101,7 +101,7 @@ def send_notification(message):
 allergy_line = f"\n⚠️ หมายเหตุแพ้อาหาร: {args.allergy_note}" if args.allergy_note else ""
 custom_line = f"\n📝 ปรับแต่ง: {args.customization}" if args.customization else ""
 notification_msg = (
-    f"\n🥪 [Sandwich Cloud Kitchen — New Order]\n"
+    f"\n🥪 [ร้านแซนด์วิดวะ — New Order]\n"
     f"รายการ: {args.menu}\n"
     f"จำนวน: {args.qty} ชิ้น/กล่อง\n"
     f"ราคาต่อหน่วย: {args.price} บาท\n"

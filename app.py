@@ -1,7 +1,7 @@
-"""Sandwich Cloud Kitchen RAG Chatbot (S4 Pivot).
+"""ร้านแซนด์วิดวะ RAG Chatbot (S4 Pivot).
 
 Run locally: streamlit run app.py
-Deploy: push to GitHub then Actions deploys to HuggingFace Space
+Deploy: push to GitHub then Actions deploys to HuggingFace Space / Streamlit Cloud
 """
 
 import json
@@ -148,7 +148,7 @@ def generate_answer(query: str, context_chunks: list[str], trace_id: str | None 
     client = genai.Client(api_key=api_key)
     context_text = "\n\n".join(context_chunks)
     prompt = (
-        "คุณคือผู้ช่วยตอบคำถามและแนะนำสินค้าของร้าน Sandwich Cloud Kitchen (ร้านแซนด์วิชขนมปังหนานุ่ม ไส้แน่น สไตล์คาเฟ่เกาหลี/ญี่ปุ่น Pre-order & Catering) จากข้อมูลด้านล่างเท่านั้น\n"
+        "คุณคือผู้ช่วยตอบคำถามและแนะนำสินค้าของ 'ร้านแซนด์วิดวะ' (ร้านแซนด์วิชขนมปังหนานุ่ม ไส้แน่น สไตล์คาเฟ่เกาหลี/ญี่ปุ่น Pre-order & Catering) จากข้อมูลด้านล่างเท่านั้น\n"
         "คำแนะนำในการตอบ:\n"
         "- ตอบด้วยน้ำเสียงสุภาพ เป็นมิตร น่ารับประทาน\n"
         "- หากลูกค้าถามหาเมนูแนะนำ เมนูยอดนิยม หรือถามว่ามีเมนูอะไรบ้าง ให้แนะนำและสรุปรายการเมนูพร้อมราคาจาก context ที่มีให้อย่างครบถ้วน\n"
@@ -178,8 +178,8 @@ def generate_answer(query: str, context_chunks: list[str], trace_id: str | None 
 
 
 def main() -> None:
-    st.set_page_config(page_title="Sandwich Cloud Kitchen RAG", page_icon="🥪")
-    st.title("🥪 Sandwich Cloud Kitchen Chatbot")
+    st.set_page_config(page_title="ร้านแซนด์วิดวะ RAG", page_icon="🥪")
+    st.title("🥪 ร้านแซนด์วิดวะ Chatbot")
     st.caption("ถามเรื่องเมนู รอบจัดส่ง บริการจัดเลี้ยง และการแพ้อาหารได้เลย ตอบจาก sandwich_kb.md")
 
     model, index, chunks = load_index()

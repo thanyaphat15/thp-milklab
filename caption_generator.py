@@ -1,4 +1,4 @@
-"""Sandwich Cloud Kitchen Caption Generator (S4 Pivot).
+"""ร้านแซนด์วิดวะ Caption Generator (S4 Pivot).
 
 Usage:
     python caption_generator.py --menu "เอ้กซันเดย์"
@@ -16,7 +16,7 @@ from google import genai
 
 
 PROMPT_TEMPLATE = """\
-คุณคือ social media manager ของร้านแซนด์วิช Cloud Kitchen
+คุณคือ social media manager ของ 'ร้านแซนด์วิดวะ' ร้านแซนด์วิช Cloud Kitchen
 ร้านทำแซนด์วิชขนมปังหนานุ่ม ไส้แน่น สไตล์คาเฟ่เกาหลี/ญี่ปุ่น
 ทำสดใหม่ตามออเดอร์ รับสั่งล่วงหน้าผ่าน LINE OA เท่านั้น
 
