@@ -92,7 +92,7 @@ def load_index() -> tuple[SentenceTransformer, faiss.IndexFlatIP, list[str]]:
 
 def retrieve_top_k(
     query: str,
-    k: int = 3,
+    k: int = 4,
     trace_id: str | None = None,
     model: SentenceTransformer | None = None,
     index: faiss.IndexFlatIP | None = None,
@@ -142,9 +142,12 @@ def generate_answer(query: str, context_chunks: list[str], trace_id: str | None 
     client = genai.Client(api_key=api_key)
     context_text = "\n\n".join(context_chunks)
     prompt = (
-        "คุณคือผู้ช่วยตอบคำถามเกี่ยวกับร้าน Sandwich Cloud Kitchen (ร้านแซนด์วิชขนมปังหนานุ่ม ไส้แน่น สไตล์คาเฟ่เกาหลี/ญี่ปุ่น Pre-order & Catering) จากข้อมูลด้านล่างเท่านั้น\n"
-        "ถ้าคำตอบไม่มีใน context ให้ตอบว่า 'ขอโทษครับ/ค่ะ ฉันไม่มีข้อมูลในส่วนนี้'\n"
-        "อย่าเดาตอบเกินกว่าที่มีใน context\n\n"
+        "คุณคือผู้ช่วยตอบคำถามและแนะนำสินค้าของร้าน Sandwich Cloud Kitchen (ร้านแซนด์วิชขนมปังหนานุ่ม ไส้แน่น สไตล์คาเฟ่เกาหลี/ญี่ปุ่น Pre-order & Catering) จากข้อมูลด้านล่างเท่านั้น\n"
+        "คำแนะนำในการตอบ:\n"
+        "- ตอบด้วยน้ำเสียงสุภาพ เป็นมิตร น่ารับประทาน\n"
+        "- หากลูกค้าถามหาเมนูแนะนำ เมนูยอดนิยม หรือถามว่ามีเมนูอะไรบ้าง ให้แนะนำและสรุปรายการเมนูพร้อมราคาจาก context ที่มีให้อย่างครบถ้วน\n"
+        "- ถ้าคำถามไม่มีข้อมูลใน context เลย ให้ตอบว่า 'ขอโทษครับ/ค่ะ ฉันไม่มีข้อมูลในส่วนนี้'\n"
+        "- อย่าแต่งข้อมูลหรือเดาราคาเกินกว่าที่มีใน context\n\n"
         f"Context:\n{context_text}\n\n"
         f"คำถาม: {query}\n"
         "คำตอบ:")
