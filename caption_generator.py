@@ -1,9 +1,10 @@
-"""MilkLab Caption Generator (S1).
+"""Sandwich Cloud Kitchen Caption Generator (S4 Pivot).
 
 Usage:
-    python caption_generator.py
+    python caption_generator.py --menu "เอ้กซันเดย์"
 
-Reads GOOGLE_API_KEY from env. Generates a Thai caption for a milk menu item.
+Reads GOOGLE_API_KEY from env. Generates a Thai caption for a sandwich menu item.
+เน้นความนุ่มฟู ฉ่ำ และการสั่งล่วงหน้าผ่าน LINE OA
 """
 
 import argparse
@@ -15,27 +16,29 @@ from google import genai
 
 
 PROMPT_TEMPLATE = """\
-คุณคือ social media manager ของร้าน MilkLab° ร้านนมสดกลางคืน
+คุณคือ social media manager ของร้านแซนด์วิช Cloud Kitchen
+ร้านทำแซนด์วิชขนมปังหนานุ่ม ไส้แน่น สไตล์คาเฟ่เกาหลี/ญี่ปุ่น
+ทำสดใหม่ตามออเดอร์ รับสั่งล่วงหน้าผ่าน LINE OA เท่านั้น
 
 จงเขียนแคปชั่นภาษาไทย 2 ถึง 3 ประโยคโปรโมตเมนู: {menu}
 {tone_instruction}
 
 เงื่อนไข:
-- โทนสนุก ใช้คำง่าย ใส่ emoji ได้
-- ต้องมีชื่อเมนู ราคา ส่วนผสม
-- ต้องมี call-to-action ปิดท้าย เช่น สั่งเลย หรือ ทักแชท
+- เน้นความนุ่ม ฟู ฉ่ำ และความสด ใส่ emoji ได้
+- ต้องมีชื่อเมนู ราคา และจุดเด่นของไส้
+- ต้องมี call-to-action สั่งล่วงหน้า เช่น "ทักสั่งได้เลย" หรือ "Pre-order ผ่าน LINE OA"
 - ห้ามใช้ em dash
 """
 
 TONE_VARIANTS = [
     "น่ารัก",
-    "เจนซี",
+    "อบอุ่นเช้าสบาย",
     "มินิมอล",
 ]
 
 
 def generate_caption(menu: str, api_key: str | None = None, tone: str | None = None) -> str:
-    """Generate a Thai caption for the given milk menu item."""
+    """Generate a Thai caption for the given sandwich menu item."""
     key = api_key or os.environ.get("GOOGLE_API_KEY")
     if not key:
         raise RuntimeError("GOOGLE_API_KEY not set in env or argument")
@@ -73,11 +76,11 @@ def main() -> int:
     load_dotenv()
 
     parser = argparse.ArgumentParser(
-        description="Generate a Thai caption for a MilkLab menu item."
+        description="Generate a Thai caption for a Sandwich Cloud Kitchen menu item."
     )
     parser.add_argument(
         "--menu",
-        help="Menu text to promote. If omitted, reads from stdin.",
+        help="ชื่อเมนูที่จะโปรโมต เช่น 'เอ้กซันเดย์' หรือ 'ทงคัตสึหมูชิ้นหนา'. If omitted, reads from stdin.",
     )
     parser.add_argument(
         "--n",
@@ -88,7 +91,7 @@ def main() -> int:
     parser.add_argument(
         "--variant",
         action="store_true",
-        help="Generate 3 caption variants in tones: น่ารัก, เจนซี, มินิมอล.",
+        help="Generate 3 caption variants in tones: น่ารัก, อบอุ่นเช้าสบาย, มินิมอล.",
     )
     parser.add_argument(
         "--api-key",

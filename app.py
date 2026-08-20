@@ -1,4 +1,4 @@
-"""MilkLab RAG Chatbot (S3).
+"""Sandwich Cloud Kitchen RAG Chatbot (S4 Pivot).
 
 Run locally: streamlit run app.py
 Deploy: push to GitHub then Actions deploys to HuggingFace Space
@@ -181,7 +181,7 @@ def main() -> None:
         with st.chat_message(msg["role"]):
             st.write(msg["content"])
 
-    if prompt := st.chat_input("ถามอะไรเกี่ยวกับ MilkLab"):
+    if prompt := st.chat_input("ถามเรื่องเมนู รอบส่ง หรือบริการจัดเลี้ยงได้เลย"):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.write(prompt)
