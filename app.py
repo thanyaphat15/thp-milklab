@@ -137,7 +137,13 @@ def generate_answer(query: str, context_chunks: list[str], trace_id: str | None 
     ensure_env()
     api_key = os.environ.get("GOOGLE_API_KEY")
     if not api_key:
-        raise RuntimeError("GOOGLE_API_KEY is not set")
+        try:
+            api_key = st.secrets.get("GOOGLE_API_KEY")
+        except Exception:
+            api_key = None
+
+    if not api_key:
+        raise RuntimeError("GOOGLE_API_KEY is not set in environment or Streamlit secrets")
 
     client = genai.Client(api_key=api_key)
     context_text = "\n\n".join(context_chunks)
